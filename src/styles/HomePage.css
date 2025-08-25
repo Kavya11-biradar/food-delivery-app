@@ -1,0 +1,28 @@
+/* HomePage.css */
+
+.homepage-background {
+  background-image: url('../assets/food.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: white;
+}
+
+.homepage-overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* dark overlay for readability */
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+.main-title {
+  font-size: 4rem;        /* Make it big */
+  font-weight: 700;       /* Bold */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Adds nice depth */
+  color: #fff;
+}
+
+.welcome-text {
+  font-size: 1.75rem;
+  color: #f8f9fa;
+}

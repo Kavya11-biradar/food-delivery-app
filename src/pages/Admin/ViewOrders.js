@@ -1,5 +1,3 @@
-// src/pages/Admin/ViewOrders.js
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const ViewOrders = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-  //const [selectedOrder, setSelectedOrder] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/api/orders/admin/all')
@@ -15,34 +12,52 @@ const ViewOrders = () => {
       .catch(err => console.error(err));
   }, []);
 
-  
-
   return (
-    <div>
-      <h2>All Customer Orders</h2>
+    <div style={{ maxWidth: '600px', margin: '40px auto', fontFamily: 'Arial, sans-serif' }}>
+      <h2 style={{ textAlign: 'center', color: '#2c3e50' }}>All Customer Orders</h2>
 
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p style={{ textAlign: 'center', color: '#777' }}>No orders found.</p>
       ) : (
-        <ul>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
           {orders.map(order => (
-            <li key={order.id} style={{ marginBottom: '10px' }}>
-              <strong>Order ID:</strong> {order.id} 
-              {/* - <strong>User ID:</strong> {order.userId} */}
-              <br />
-              {/* <button onClick={() => fetchOrderDetails(order.id)}>View Details</button> */}
-              <button onClick={() => navigate(`/admin/order/${order.id}`)}>
+            <li
+              key={order.id}
+              style={{
+                marginBottom: '15px',
+                padding: '15px',
+                borderRadius: '8px',
+                backgroundColor: '#f7f9fc',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <strong>Order ID:</strong> {order.id}
+              </div>
+              <button
+                onClick={() => navigate(`/admin/order/${order.id}`)}
+                style={{
+                  padding: '8px 16px',
+                  backgroundColor: '#2980b9',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: '600',
+                  transition: 'background-color 0.3s ease',
+                }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#1c5980'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#2980b9'}
+              >
                 View Details
               </button>
             </li>
           ))}
         </ul>
       )}
-
-     
-
-
-
     </div>
   );
 };

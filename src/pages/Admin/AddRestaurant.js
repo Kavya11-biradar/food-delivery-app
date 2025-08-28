@@ -1,7 +1,6 @@
-// src/pages/Admin/AddRestaurant.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../../styles/AddRestaurant.css'; // Import CSS (adjust path if needed)
 
 const AddRestaurant = () => {
   const [name, setName] = useState('');
@@ -28,23 +27,30 @@ const AddRestaurant = () => {
   };
 
   return (
-    <div>
-      <h2>Add Restaurant</h2>
+    <div className="add-restaurant-container">
+      <h2 className="form-title">Add Restaurant</h2>
+
+      <label htmlFor="restaurantName" className="form-label">Restaurant Name</label>
       <input
+        id="restaurantName"
         type="text"
-        placeholder="Restaurant Name"
+        placeholder="Enter restaurant name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        style={{ display: 'block', marginBottom: '10px' }}
+        className="form-input"
       />
+
+      <label htmlFor="restaurantAddress" className="form-label">Address</label>
       <input
+        id="restaurantAddress"
         type="text"
-        placeholder="Address"
+        placeholder="Enter address"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
-        style={{ display: 'block', marginBottom: '10px' }}
+        className="form-input"
       />
-      <button onClick={handleAddRestaurant}>Add Restaurant</button>
+
+      <button onClick={handleAddRestaurant} className="submit-btn">Add Restaurant</button>
     </div>
   );
 };

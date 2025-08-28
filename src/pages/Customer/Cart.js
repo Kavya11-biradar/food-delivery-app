@@ -1,7 +1,6 @@
-// src/pages/Customer/Cart.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../../styles/cart.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -10,7 +9,6 @@ const Cart = () => {
   const [newAddress, setNewAddress] = useState({ street: '', city: '', zip: '' });
   const userId = localStorage.getItem('userId');
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(storedCart);
@@ -20,12 +18,9 @@ const Cart = () => {
       return;
     }
 
-    // Load addresses for user on mount
-    if (userId) {
-      axios.get(`http://localhost:8080/api/addresses/user/${userId}`)
-        .then(res => setAddresses(res.data))
-        .catch(err => console.error(err));
-    }
+    axios.get(`http://localhost:8080/api/addresses/user/${userId}`)
+      .then(res => setAddresses(res.data))
+      .catch(err => console.error(err));
   }, [userId]);
 
   const handlePlaceOrder = () => {
@@ -82,8 +77,6 @@ const Cart = () => {
       .then(() => {
         alert("Address added successfully!");
         setNewAddress({ street: '', city: '', zip: '' });
-
-        // Reload addresses after adding new one
         return axios.get(`http://localhost:8080/api/addresses/user/${userId}`);
       })
       .then(res => setAddresses(res.data))
@@ -96,78 +89,87 @@ const Cart = () => {
   const totalPrice = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
 
   return (
-    <div>
-      <h2>Your Cart</h2>
+    <div className="container">
+      <h2 className="heading">Your Cart 🛒</h2>
 
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p className="empty-message">Your cart is empty.</p>
       ) : (
-        <div>
-          {cart.map((item, index) => (
-            <div key={index} style={{ marginBottom: '10px' }}>
-              <p>{item.name} - ${item.price} x {item.quantity || 1}</p>
-              <button onClick={() => removeItem(index)}>Remove</button>
-            </div>
-          ))}
-
-          <h3>Total: ${totalPrice.toFixed(2)}</h3>
-
-          <div style={{ marginTop: '20px' }}>
-            <label>
-              Select Delivery Address:
-              <br />
-              <select
-                value={addressId}
-                onChange={e => setAddressId(e.target.value)}
-                style={{ width: '300px', padding: '8px' }}
-              >
-                <option value="">-- Select an address --</option>
-                {addresses.length === 0 ? (
-                  <option disabled>You have no saved addresses.</option>
-                ) : (
-                  addresses.map(addr => (
-                    <option key={addr.id} value={addr.id}>
-                      {addr.street}, {addr.city} - {addr.zip}
-                    </option>
-                  ))
-                )}
-              </select>
-            </label>
+        <>
+          <div className="cart-list">
+            {cart.map((item, index) => (
+              <div key={index} className="cart-item">
+                <div>
+                  <p className="item-name">{item.name}</p>
+                  <p className="item-price">${item.price.toFixed(2)} x {item.quantity || 1}</p>
+                </div>
+                <button
+                  className="remove-btn"
+                  onClick={() => removeItem(index)}
+                  aria-label={`Remove ${item.name} from cart`}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
           </div>
 
-          <div style={{ marginTop: '30px' }}>
+          <h3 className="total">Total: ${totalPrice.toFixed(2)}</h3>
+
+          <div className="address-section">
+            <label htmlFor="address-select" className="label">
+              Select Delivery Address:
+            </label>
+            <select
+              id="address-select"
+              value={addressId}
+              onChange={e => setAddressId(e.target.value)}
+              className="select"
+            >
+              <option value="">-- Select an address --</option>
+              {addresses.length === 0 ? (
+                <option disabled>You have no saved addresses.</option>
+              ) : (
+                addresses.map(addr => (
+                  <option key={addr.id} value={addr.id}>
+                    {addr.street}, {addr.city} - {addr.zip}
+                  </option>
+                ))
+              )}
+            </select>
+          </div>
+
+          <div className="new-address-section">
             <h3>Add New Address</h3>
             <input
               type="text"
               placeholder="Street"
               value={newAddress.street}
               onChange={e => setNewAddress({ ...newAddress, street: e.target.value })}
-              style={{ width: '300px', marginBottom: '10px', padding: '8px' }}
-            /><br />
+              className="input"
+            />
             <input
               type="text"
               placeholder="City"
               value={newAddress.city}
               onChange={e => setNewAddress({ ...newAddress, city: e.target.value })}
-              style={{ width: '300px', marginBottom: '10px', padding: '8px' }}
-            /><br />
+              className="input"
+            />
             <input
               type="text"
               placeholder="ZIP Code"
               value={newAddress.zip}
               onChange={e => setNewAddress({ ...newAddress, zip: e.target.value })}
-              style={{ width: '300px', marginBottom: '10px', padding: '8px' }}
-            /><br />
-            <button onClick={handleAddAddress}>Add Address</button>
+              className="input"
+            />
+            <button onClick={handleAddAddress} className="add-address-btn">Add Address</button>
           </div>
 
-          <br />
-          <button onClick={handlePlaceOrder} style={{ padding: '10px 20px', fontSize: '16px' }}>
+          <button onClick={handlePlaceOrder} className="place-order-btn">
             Place Order
           </button>
-        </div>
+        </>
       )}
-
     </div>
   );
 };

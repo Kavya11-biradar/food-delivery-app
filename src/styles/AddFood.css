@@ -1,0 +1,63 @@
+.add-food-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 25px 30px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.form-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.form-label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-select,
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.form-select:focus,
+.form-input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(52, 152, 219, 0.6);
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #2980b9;
+}

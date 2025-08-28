@@ -1,0 +1,51 @@
+.admin-dashboard-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  color: #222;
+}
+
+.admin-dashboard-title {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.admin-links-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-links-list li {
+  margin: 0;
+}
+
+.admin-link-btn {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #3498db;
+  color: white;
+  font-size: 1.1rem;
+  padding: 15px 25px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.4);
+  font-weight: 600;
+}
+
+.admin-link-btn:hover {
+  background-color: #2980b9;
+  box-shadow: 0 6px 15px rgba(41, 128, 185, 0.5);
+}

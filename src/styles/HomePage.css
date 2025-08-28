@@ -1,28 +1,99 @@
-/* HomePage.css */
-
 .homepage-background {
-  background-image: url('../assets/food.jpg'); 
+  background-image: url('../assets/food.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .homepage-overlay {
-  background-color: rgba(0, 0, 0, 0.6); /* dark overlay for readability */
-  min-height: 100vh;
-  padding-top: 50px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.homepage-overlay:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .main-title {
-  font-size: 4rem;        /* Make it big */
-  font-weight: 700;       /* Bold */
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Adds nice depth */
-  color: #fff;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #ff4d4f;
+  margin-bottom: 0.5rem;
+  /* Optional: subtle text shadow for depth */
+  text-shadow: 1px 1px 4px rgba(255, 77, 79, 0.6);
 }
 
 .welcome-text {
-  font-size: 1.75rem;
-  color: #f8f9fa;
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.app-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 25px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(255, 77, 79, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.app-logo:hover {
+  transform: scale(1.1);
+}
+
+.role-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.role-button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+}
+
+.customer-button {
+  background-color: #ff7f50;
+  color: white;
+}
+
+.customer-button:hover {
+  background-color: #ff5722;
+}
+
+.admin-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.admin-button:hover {
+  background-color: #388e3c;
 }
